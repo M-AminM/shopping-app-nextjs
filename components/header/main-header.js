@@ -1,6 +1,7 @@
 import classes from "./header.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faShoppingBasket, faBars } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
 const MainHeader = () => {
   return (
@@ -12,8 +13,9 @@ const MainHeader = () => {
         </button>
       </div>
       <div className="flex justify-end items-center gap-8">
-        <p className="text-white cursor-pointer text-xl md:hidden">register</p>
-        <p className="text-white cursor-pointer text-xl md:hidden">signin</p>
+      <Link href="/"><p className="text-white cursor-pointer text-xl md:hidden">home</p></Link>
+      <Link href="/register"><p className="text-white cursor-pointer text-xl md:hidden">register</p></Link>
+        <Link href="/signup"><p className="text-white cursor-pointer text-xl md:hidden">singup</p></Link>
         <FontAwesomeIcon className="cursor-pointer text-xl md:hidden" color="white" icon={faShoppingBasket}/>
         <FontAwesomeIcon className="cursor-pointer hidden md:flex" color="white" icon={faBars}/>
       </div>

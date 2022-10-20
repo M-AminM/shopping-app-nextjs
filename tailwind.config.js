@@ -9,7 +9,9 @@ module.exports = {
       transparent: 'transparent',
       header: '#131921',
       white: "#fff",
-      orange: "#F3A847"
+      orange: "#F3A847",
+      black: "#23242a",
+      mainBlack: "#1c1c1c"
     },
     screens: {
       'tablet': '640px',
