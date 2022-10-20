@@ -38,7 +38,7 @@ export default function Slider() {
                 : classes.slide
             }
           >
-            <img src={`/media/${index + 1}.jpg`} />
+            <img src={`/media/${index + 1}.jpg`} alt="image"/>
           </div>
         );
       })}
@@ -48,6 +48,7 @@ export default function Slider() {
       <div className={classes.containerDots}>
         {Array.from({ length: 5 }).map((item, index) => (
           <div
+          key={index}
             onClick={() => moveDot(index + 1)}
             className={
               slideIndex === index + 1
