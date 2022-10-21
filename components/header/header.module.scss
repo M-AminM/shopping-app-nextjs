@@ -1,19 +1,31 @@
 .header {
     padding: 20px 80px;
     background: #131921;
-    // display: flex;
-    // justify-content: space-between;
-    // align-items: center;
-    width: 100%;
+    // width: 100%;
+}
+
+.leftSide {
+    // width: 100%;
+    background: white;
+    height: 35px;
+    border-radius: 4px;
+}
+
+.searchButton {
+    width: 40px;
+    background: #F3A847;
+    height: 100%;
+    border-radius: 4px 0 0 4px;
+    
 }
 
 .searchInput {
-    // border-radius: 4px 0 0 4px;
-    width: 100%;
+    border-radius: 14px;
+    // width: 100%;
     border: none;
     outline: none;
     padding-left: 10px;
-    height: 35px;
+    // height: 35px;
 }
 
 .menu {

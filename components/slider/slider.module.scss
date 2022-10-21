@@ -27,24 +27,15 @@
   }
   
   .btnSlide {
-    width: 60px;
-    height: 60px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     background: #f1f1f1;
     border: 1px solid rgba(34, 34, 34, 0.287);
     position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     cursor: pointer;
   }
   
-  .btnSlide img {
-    width: 25px;
-    height: 25px;
-    pointer-events: none;
-  }
-
   .prev {
     top: 50%;
     left: 20px;
@@ -66,8 +57,8 @@
   }
 
   .dot {
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
     border: 3px solid #f1f1f1;
     margin: 0 5px;
