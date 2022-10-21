@@ -1,19 +1,32 @@
 .header {
     padding: 20px 80px;
     background: #131921;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    // display: flex;
+    // justify-content: space-between;
+    // align-items: center;
     width: 100%;
 }
 
 .searchInput {
-    border-radius: 4px 0 0 4px;
+    // border-radius: 4px 0 0 4px;
     width: 100%;
     border: none;
     outline: none;
     padding-left: 10px;
     height: 35px;
+}
+
+.menu {
+    animation: animate 1s linear none;
+}
+
+@keyframes animate {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 @media screen and (max-width: 991px) {
