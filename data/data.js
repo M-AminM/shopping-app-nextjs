@@ -1,27 +1,27 @@
 const dataSlider = [
   {
     id: 1,
-    title: "Shopify themes—built for commerce",
+    title: "Baggs",
     subTitle:
-      "Take your store from launch to scale with themes that make selling easy.",
+      "DO NOT COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS",
   },
   {
     id: 2,
-    title: "Shopify themes—built for commerce2",
+    title: "Airpods",
     subTitle:
-      "Take your store from launch to scale with themes that make selling easy.",
+      "DO NOT COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS",
   },
   {
     id: 3,
-    title: "Shopify themes—built for commerce3",
+    title: " Shoes",
     subTitle:
-      "Take your store from launch to scale with themes that make selling easy.",
+      "DO NOT COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS",
   },
   {
     id: 4,
-    title: "Shopify themes—built for commerce4",
+    title: " Wathes",
     subTitle:
-      "Take your store from launch to scale with themes that make selling easy.",
+      "DO NOT COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS",
   }
 ];
 

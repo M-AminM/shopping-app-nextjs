@@ -28,7 +28,7 @@ export default function Slider() {
   };
 
   return (
-    <div>
+    <div style={{height: "100vh"}}>
       {dataSlider.map((data) => {
         return (
           <div
@@ -52,6 +52,9 @@ export default function Slider() {
                     <FontAwesomeIcon color="#FF4A57" icon={faArrowRight} />
                   </p>
                 </div>
+                <button className={classes.buttonShop} role="button">
+                  Shop now
+                </button>
               </div>
               <img
                 src={`/media/${data.id}.jpg`}

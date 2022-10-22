@@ -6,8 +6,9 @@ import Products from "../components/products/products";
 export default function Home() {
   return (
     <Fragment>
+       
       <Slider />
-      <Products />
+     <Products />
     </Fragment>
   );
 }

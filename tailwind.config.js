@@ -11,7 +11,8 @@ module.exports = {
       white: "#fff",
       orange: "#F3A847",
       black: "#23242a",
-      mainBlack: "#1c1c1c"
+      mainBlack: "#1c1c1c",
+      midBlue: "#45F3FF"
     },
     screens: {
       'tablet': '640px',
