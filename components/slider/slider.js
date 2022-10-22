@@ -32,6 +32,7 @@ export default function Slider() {
       {dataSlider.map((data) => {
         return (
           <div
+            key={data.id}
             className={
               slideIndex === data.id
                 ? `${classes.slide} ${classes.activeAnim}`
