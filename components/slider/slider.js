@@ -1,6 +1,7 @@
 import { useState } from "react";
 import classes from "./slider.module.scss";
-import BtnSlider from "./BtnSlider";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import dataSlider from "../../data/data";
 
 export default function Slider() {
@@ -27,37 +28,38 @@ export default function Slider() {
   };
 
   return (
-    <div className={classes.containerSlider}>
-      {dataSlider.map((obj, index) => {
+    <div>
+      {dataSlider.map((data) => {
         return (
           <div
-            key={obj.id}
             className={
-              slideIndex === index + 1
+              slideIndex === data.id
                 ? `${classes.slide} ${classes.activeAnim}`
                 : classes.slide
             }
           >
-            <img src={`/media/${index + 1}.jpg`} alt="image"/>
+            <div className={classes.innerSlider}>
+              <div className={classes.titles}>
+                <h1 className="text-white text-5xl">{data.title}</h1>
+                <h2 className="text-white text-xl">{data.subTitle}</h2>
+
+                <div className={classes.arrowBtn}>
+                  <p onClick={nextSlide} className="text-white cursor-pointer">
+                    <FontAwesomeIcon color="#FF4A57" icon={faArrowLeft} />
+                  </p>
+                  <p onClick={prevSlide} className="text-white cursor-pointer">
+                    <FontAwesomeIcon color="#FF4A57" icon={faArrowRight} />
+                  </p>
+                </div>
+              </div>
+              <img
+                src={`/media/${data.id}.jpg`}
+                className={classes.imageSlider}
+              />
+            </div>
           </div>
         );
       })}
-      <BtnSlider moveSlide={nextSlide} direction={"next"} />
-      <BtnSlider moveSlide={prevSlide} direction={"prev"} />
-
-      <div className={classes.containerDots}>
-        {Array.from({ length: 5 }).map((item, index) => (
-          <div
-          key={index}
-            onClick={() => moveDot(index + 1)}
-            className={
-              slideIndex === index + 1
-                ? `${classes.dot} ${classes.active}`
-                : classes.dot
-            }
-          ></div>
-        ))}
-      </div>
     </div>
   );
 }
