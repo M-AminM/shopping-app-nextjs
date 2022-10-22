@@ -4,7 +4,7 @@ import Link from "next/link";
 const Registerantion = ({ loginOrSignup }) => {
   return (
     <div
-      className="flex justify-center items-center bg-black"
+      className="flex justify-center items-center"
       style={{ minHeight: "90vh" }}
     >
       <div
