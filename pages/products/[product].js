@@ -37,7 +37,7 @@ const Product = () => {
       className="text-white flex justify-center items-center w-full md:flex-col px-32 gap-12 md:gap-2 md:px-12 py-12"
     //   style={{ padding: "40px 150px" }}
     >
-      <Image src={product.image} alt={product.alt} width={400} height={400} />
+      <img src={product.image} alt={product.alt} width={400} height={400} />
 
       <div className="w-5/6 flex flex-col gap-6 md:w-full md:pt-10">
         <h1 className="capitalize text-5xl md:text-3xl">{product.alt}</h1>

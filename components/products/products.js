@@ -16,8 +16,8 @@ const Products = () => {
       >
         {productData.map((product) => {
           return (
-            <Link href={`/products/${product.alt}`}>
-              <div className={classes.productBox} key={product.id}>
+            <Link key={product.id} href={`/products/${product.alt}`}>
+              <div className={classes.productBox} >
                 <div className={classes.circle}></div>
                 <Image
                   src={product.image}
