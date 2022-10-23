@@ -28,7 +28,7 @@ export default function Slider() {
   };
 
   return (
-    <div style={{height: "100vh"}}>
+    <div style={{height: "90vh"}}>
       {dataSlider.map((data) => {
         return (
           <div

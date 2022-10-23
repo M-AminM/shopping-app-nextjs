@@ -1,0 +1,17 @@
+.productBox {
+    padding: 40px;
+    background: #2b3849;
+    border-radius: 16px;
+    cursor: pointer;
+}
+
+.circle {
+    background: rgb(0,0,0,0.2);
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
