@@ -31,11 +31,13 @@ const MainHeader = () => {
             </Link>
           </li>
           <li>
-            <FontAwesomeIcon
-              className="cursor-pointer"
-              color="white"
-              icon={faShoppingBasket}
-            />
+            <Link href="/cart">
+              <FontAwesomeIcon
+                className="cursor-pointer"
+                color="white"
+                icon={faShoppingBasket}
+              />
+            </Link>
           </li>
         </ul>
       </nav>
