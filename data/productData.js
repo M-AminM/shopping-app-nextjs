@@ -31,6 +31,38 @@ const productData = [
     price: 10.0,
     color: ["white", "black", "red"],
   },
+  {
+    id: 5,
+    image: "/media/1.jpg",
+    alt: "Bag",
+    info: "Lorem ipsum dolor sit amet. Aut corporis sequi sed deleniti dicta a voluptatem dolorem est eveniet doloremque vel molestias sunt quo iure numquam in esse velit. Et voluptas labore rem tempora dolores aut fugit excepturi est minus accusantium aut nulla quia non atque molestiae qui porro quidem!",
+    price: 30.0,
+    color: ["white", "black", "red"],
+  },
+  {
+    id: 6,
+    image: "/media/2.jpg",
+    alt: "Head phone",
+    info: "Lorem ipsum dolor sit amet. Aut corporis sequi sed deleniti dicta a voluptatem dolorem est eveniet doloremque vel molestias sunt quo iure numquam in esse velit. Et voluptas labore rem tempora dolores aut fugit excepturi est minus accusantium aut nulla quia non atque molestiae qui porro quidem!",
+    price: 40.0,
+    color: ["white", "black", "red"],
+  },
+  {
+    id: 7,
+    image: "/media/3.jpg",
+    alt: "Shoes",
+    info: "Lorem ipsum dolor sit amet. Aut corporis sequi sed deleniti dicta a voluptatem dolorem est eveniet doloremque vel molestias sunt quo iure numquam in esse velit. Et voluptas labore rem tempora dolores aut fugit excepturi est minus accusantium aut nulla quia non atque molestiae qui porro quidem!",
+    price: 60.0,
+    color: ["white", "black", "red"],
+  },
+  {
+    id: 8,
+    image: "/media/4.jpg",
+    alt: "Watch",
+    info: "Lorem ipsum dolor sit amet. Aut corporis sequi sed deleniti dicta a voluptatem dolorem est eveniet doloremque vel molestias sunt quo iure numquam in esse velit. Et voluptas labore rem tempora dolores aut fugit excepturi est minus accusantium aut nulla quia non atque molestiae qui porro quidem!",
+    price: 100.0,
+    color: ["white", "black", "red"],
+  },
 ];
 
 export default productData;

@@ -6,12 +6,12 @@ import Link from "next/link";
 
 const Products = () => {
   return (
-    <div className="pt-10">
+    <div className="pt-10 ">
       <h1 className="text-white text-4xl flex justify-center items-center">
         Products
       </h1>
       <div
-        className="flex justify-center items-center gap-10 md:flex-col"
+        className="flex justify-center items-center gap-10 md:flex-col flex-wrap"
         style={{ padding: "50px 0" }}
       >
         {productData.map((product) => {
@@ -21,6 +21,7 @@ const Products = () => {
                 <div className={classes.circle}></div>
                 <Image
                   src={product.image}
+                  className={classes.productImage}
                   alt={product.alt}
                   width={200}
                   height={200}

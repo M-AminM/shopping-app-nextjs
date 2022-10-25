@@ -21,12 +21,12 @@ const MainHeader = () => {
             </Link>
           </li>
           <li>
-            <Link href="register">
+            <Link href="/register">
               <p className="text-white cursor-pointer">Register</p>
             </Link>
           </li>
           <li>
-            <Link href="signup">
+            <Link href="/signup">
               <p className="text-white cursor-pointer">Signup</p>
             </Link>
           </li>
