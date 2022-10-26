@@ -12,10 +12,11 @@ const Cart = () => {
     {
       image: "/media/shoes.png",
       product: "JESSIE THUNDER SHOES",
-      id: "93813718293",
+      id: "93813718292",
       color: "black",
       size: "37.5",
       price: "50",
+      
     },
     {
       image: "/media/shirt.png",
@@ -35,9 +36,9 @@ const Cart = () => {
             
           {orders.map((order) => {
             return (
-              <div className="flex justify-between">
+              <div key={order.id} className="flex justify-between">
                 
-                <div key={order.id} className="flex gap-4">
+                <div className="flex gap-4">
                   <Image
                     src={order.image}
                     alt={order.name}
