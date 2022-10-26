@@ -10,7 +10,25 @@
     width: 20%;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 14px;
+    border-radius: 14px;
+    height: 100%;
+}
+
+.cartButton {
+    background: #F3A847;
+    color: #000;
+    border-radius: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    font-weight: 600;
+    
+    // position:relative;
+    // margin-top: 80%;
+    
+
 }
 
 @media screen and (max-width: 991px) {

@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { useState } from "react";
 import classes from "./cart.module.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlug, faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const Cart = () => {
   const [count, setCount] = useState({
@@ -16,7 +18,6 @@ const Cart = () => {
       color: "black",
       size: "37.5",
       price: "50",
-      
     },
     {
       image: "/media/shirt.png",
@@ -33,11 +34,9 @@ const Cart = () => {
       <h1 className="flex justify-center items-center text-3xl">YOUR BAG</h1>
       <div className="flex justify-between md:flex-col">
         <div className="w-9/12 md:w-full">
-            
           {orders.map((order) => {
             return (
               <div key={order.id} className="flex justify-between">
-                
                 <div className="flex gap-4">
                   <Image
                     src={order.image}
@@ -62,22 +61,21 @@ const Cart = () => {
                     {/* <hr /> */}
                   </div>
                 </div>
-                <div className="flex flex-col py-10">
-                  <div className="flex">
-                    <span>-</span>
-                    <div>{count.shirt}</div>
-                    <span>+</span>
+                <div className="flex flex-col py-10 gap-4">
+                  <div className="flex gap-2">
+                    <FontAwesomeIcon className="cursor-pointer" icon={faMinus} />
+                    <span className="text-xl" style={{marginTop:"-8px"}}>{count.shirt}</span>
+                    <FontAwesomeIcon className="cursor-pointer" icon={faPlus} />
                   </div>
-                  <span>$ {order.price}</span>
+                  <span className="text-xl">$ {order.price}</span>
                 </div>
-                
               </div>
             );
           })}
-          
         </div>
 
         <div className={classes.orderBox}>
+          <h1 className="flex justify-center items-center">ORDER SUMMERY</h1>
           <div className="flex justify-between">
             <h3>Subtotal</h3>
             <span>$ 80</span>
@@ -91,10 +89,10 @@ const Cart = () => {
             <span>- $ 5.9</span>
           </div>
           <div className="flex justify-between">
-            <h3>Total</h3>
-            <span>$ 80.0</span>
+            <h3 className="text-xl font-bold">Total</h3>
+            <span className="text-xl font-bold">$ 80.0</span>
           </div>
-          <button className="">Checkout Now</button>
+          <button className={classes.cartButton}>Checkout Now</button>
         </div>
       </div>
     </section>
