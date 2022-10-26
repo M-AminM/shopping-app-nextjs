@@ -1,7 +1,7 @@
-import Registerantion from "../../components/registeration/register";
+import MainSignup from "../../components/signup/main-signup";
 
 const Signup = () => {
-  return <Registerantion loginOrSignup="Signup" />;
+  return <MainSignup />;
 };
 
 export default Signup;
