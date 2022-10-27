@@ -26,11 +26,6 @@ const MainHeader = () => {
             </Link>
           </li>
           <li>
-            <Link href="/signup">
-              <p className="text-white cursor-pointer">Signup</p>
-            </Link>
-          </li>
-          <li>
             <Link href="/cart">
               <FontAwesomeIcon
                 className="cursor-pointer"
