@@ -1,14 +1,30 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import classes from "./cart.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlug, faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { getSession } from "next-auth/react";
 
 const Cart = () => {
-  const [count, setCount] = useState({
-    shoes: 1,
-    shirt: 1,
-  });
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    getSession().then((session) => {
+      if (!session) {
+        window.location.href = "/register";
+      } else {
+        setIsLoading(false);
+      }
+    });
+  }, []);
+
+  if (isLoading) {
+    return (
+      <p className="flex justify-center items-center h-screen text-white">
+        is Loading
+      </p>
+    );
+  }
 
   const orders = [
     {
@@ -63,8 +79,13 @@ const Cart = () => {
                 </div>
                 <div className="flex flex-col py-10 gap-4">
                   <div className="flex gap-2">
-                    <FontAwesomeIcon className="cursor-pointer" icon={faMinus} />
-                    <span className="text-xl" style={{marginTop:"-8px"}}>{count.shirt}</span>
+                    <FontAwesomeIcon
+                      className="cursor-pointer"
+                      icon={faMinus}
+                    />
+                    <span className="text-xl" style={{ marginTop: "-8px" }}>
+                      1
+                    </span>
                     <FontAwesomeIcon className="cursor-pointer" icon={faPlus} />
                   </div>
                   <span className="text-xl">$ {order.price}</span>

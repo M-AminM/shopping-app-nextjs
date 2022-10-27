@@ -35,7 +35,6 @@ const Product = () => {
   return (
     <div
       className="text-white flex justify-center items-center w-full md:flex-col px-32 gap-12 md:gap-2 md:px-12 py-12"
-    //   style={{ padding: "40px 150px" }}
     >
       <img src={product.image} alt={product.alt} width={400} height={400} />
 

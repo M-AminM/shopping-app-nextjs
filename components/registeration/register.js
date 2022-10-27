@@ -49,9 +49,9 @@ function AuthForm() {
 
       console.log(result);
 
-      // if (!result.error) {
-      //   router.replace("/");
-      // }
+      if (!result.error) {
+        router.replace("/");
+      }
     } else {
       try {
         const enteredUsername = usernameInputRef.current.value;
