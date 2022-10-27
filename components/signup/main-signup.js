@@ -27,32 +27,38 @@ const MainSignup = () => {
         <div className={classes.form}>
           <h2>Signup</h2>
 
-          <form onSubmit={handleSubmit(submitHandler)}>
+          <form onSubmit={submitHandler}>
             <div className={classes.inputBox}>
-              <input type="text" required {...register("username")} />
+              <label htmlFor="username"></label>
+              <input id="username" type="text" required {...register("username")} />
               <span>Username</span>
               <i></i>
             </div>
 
             <div className={classes.inputBox}>
-              <input type="email" required {...register("email")} />
+              <label htmlFor="email"></label>
+              <input id="email" type="email" required {...register("email")} />
               <span>Email</span>
               <i></i>
             </div>
 
             <div className={classes.inputBox}>
-              <input type="password" required {...register("password")} />
+              <label htmlFor="password"></label>
+              <input id="password" type="password" required {...register("password")} />
               <span>Password</span>
               <i></i>
             </div>
+            
 
             <input
               className={classes.submitButton}
               style={{ marginTop: "30px" }}
               type="submit"
-              value="Signup"
+              value={isLogin ? "Login" : "Create Account"}
             />
           </form>
+
+
         </div>
       </div>
     </div>

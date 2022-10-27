@@ -135,13 +135,18 @@
     outline: none;
     background: #45f3ff;
     padding: 11px 25px;
-    // width: 100px;
-    width: 50%;
+    padding: 0.5rem 2.5rem;
     margin-top: 10px;
     border-radius: 4px;
     font-weight: 600;
-    cursor: pointer;
-    
+    cursor: pointer; 
+}
+
+.toggle {
+    width: 100%;
+    color: #45f3ff;
+    background: transparent;
+    padding-top: 16px;
 }
 
 @media screen and (max-width: 440px) {
