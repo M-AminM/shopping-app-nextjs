@@ -1,7 +1,7 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import classes from "./register.module.scss";
 
-import { signIn } from "next-auth/react";
+import { getSession, signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 
 const createUser = async (username, email, password) => {
@@ -22,13 +22,36 @@ const createUser = async (username, email, password) => {
 };
 
 function AuthForm() {
+  const [login, setLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(true);
   const usernameInputRef = useRef();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
+  
+
+
+  useEffect(() => {
+    getSession().then((session) => {
+      if (session) {
+        window.location.href = "/";
+      } else {
+        setLogin(false);
+      }
+    });
+  }, []);
+
+  if (login) {
+    return (
+      <p className="flex justify-center items-center h-screen text-white">
+        is Loading
+      </p>
+    );
+  }
+
   const router = useRouter();
 
-  const [isLogin, setIsLogin] = useState(true);
+
 
   function switchAuthModeHandler() {
     setIsLogin((prevState) => !prevState);
