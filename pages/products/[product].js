@@ -5,14 +5,18 @@ import Image from "next/image";
 import classes from "./product.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
+import { useSession } from "next-auth/react";
+import { getSession } from "next-auth/react";
 
-const Product = ({ productData }) => {
+const Product = ({ productData, session }) => {
   const [order, setOrder] = useState({
+    email: session.user.email,
     name: productData.alt,
     price: productData.price,
     color: "black",
     size: "M",
     number: 1,
+    image: productData.image,
   });
   const increaseNumber = () => {
     setOrder({ ...order, number: order.number + 1 });
@@ -32,6 +36,7 @@ const Product = ({ productData }) => {
         "Content-Type": "application/json",
       },
     });
+    
   };
 
   return (
@@ -108,9 +113,21 @@ export async function getServerSideProps(context) {
     }
   });
 
+  const session = await getSession(context);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/dashboard/auth/login",
+        permanent: false,
+      },
+    };
+  }
+
   return {
     props: {
       productData: data,
+      session: session,
     },
   };
 }

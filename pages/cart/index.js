@@ -7,6 +7,8 @@ import { getSession } from "next-auth/react";
 
 const Cart = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [orders, setOrders] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(true);
 
   useEffect(() => {
     getSession().then((session) => {
@@ -16,9 +18,15 @@ const Cart = () => {
         setIsLoading(false);
       }
     });
+    fetch("/api/orders")
+      .then((response) => response.json())
+      .then((data) => {
+        setIsLoaded(false);
+        setOrders(data.orders);
+      });
   }, []);
 
-  if (isLoading) {
+  if (isLoading || isLoaded) {
     return (
       <p className="flex justify-center items-center h-screen text-white">
         is Loading
@@ -26,24 +34,24 @@ const Cart = () => {
     );
   }
 
-  const orders = [
-    {
-      image: "/media/shoes.png",
-      product: "JESSIE THUNDER SHOES",
-      id: "93813718292",
-      color: "black",
-      size: "37.5",
-      price: "50",
-    },
-    {
-      image: "/media/shirt.png",
-      product: "HAKURA T-SHIRT",
-      id: "93813718293",
-      color: "gray",
-      size: "M",
-      price: "20",
-    },
-  ];
+  // const orders = [
+  //   {
+  //     image: "/media/shoes.png",
+  //     product: "JESSIE THUNDER SHOES",
+  //     id: "93813718292",
+  //     color: "black",
+  //     size: "37.5",
+  //     price: "50",
+  //   },
+  //   {
+  //     image: "/media/shirt.png",
+  //     product: "HAKURA T-SHIRT",
+  //     id: "93813718293",
+  //     color: "gray",
+  //     size: "M",
+  //     price: "20",
+  //   },
+  // ];
 
   return (
     <section className="px-8 py-8 text-white">
@@ -52,17 +60,22 @@ const Cart = () => {
         <div className="w-9/12 md:w-full">
           {orders.map((order) => {
             return (
-              <div key={order.id} className="flex justify-between">
+              <div
+                key={order.id}
+                className="flex justify-between"
+                style={{ paddingBottom: "40px" }}
+              >
                 <div className="flex gap-4">
                   <Image
                     src={order.image}
                     alt={order.name}
                     width={220}
                     height={220}
+                    className="object-cover rounded-full"
                   />
                   <div className="py-10 flex flex-col gap-2 ">
                     <h2>
-                      Product: <span>{order.product}</span>
+                      Product: <span>{order.name}</span>
                     </h2>
                     <h2>
                       ID: <span>{order.id}</span>
@@ -84,7 +97,7 @@ const Cart = () => {
                       icon={faMinus}
                     />
                     <span className="text-xl" style={{ marginTop: "-8px" }}>
-                      1
+                      {order.number}
                     </span>
                     <FontAwesomeIcon className="cursor-pointer" icon={faPlus} />
                   </div>
