@@ -12,7 +12,8 @@ module.exports = {
       orange: "#F3A847",
       black: "#23242a",
       mainBlack: "#1c1c1c",
-      midBlue: "#45F3FF"
+      midBlue: "#45F3FF",
+      red: "#FF4A59"
     },
     screens: {
       'tablet': '640px',

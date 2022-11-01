@@ -4,11 +4,13 @@ import classes from "./cart.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlug, faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { getSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 const Cart = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [orders, setOrders] = useState([]);
   const [isLoaded, setIsLoaded] = useState(true);
+  const { data: session, status } = useSession();
 
   useEffect(() => {
     getSession().then((session) => {
@@ -34,35 +36,27 @@ const Cart = () => {
     );
   }
 
-  // const orders = [
-  //   {
-  //     image: "/media/shoes.png",
-  //     product: "JESSIE THUNDER SHOES",
-  //     id: "93813718292",
-  //     color: "black",
-  //     size: "37.5",
-  //     price: "50",
-  //   },
-  //   {
-  //     image: "/media/shirt.png",
-  //     product: "HAKURA T-SHIRT",
-  //     id: "93813718293",
-  //     color: "gray",
-  //     size: "M",
-  //     price: "20",
-  //   },
-  // ];
+  const userEmail = session.user.email;
 
+  const results = orders.filter((order) => order.email === userEmail);
+
+  let sum = 0;
+
+  results.forEach((value) => {
+    sum += value.price;
+  });
+
+  console.log(sum);
   return (
-    <section className="px-8 py-8 text-white">
+    <section className="px-8 py-8 text-white min-h-screen">
       <h1 className="flex justify-center items-center text-3xl">YOUR BAG</h1>
       <div className="flex justify-between md:flex-col">
         <div className="w-9/12 md:w-full">
-          {orders.map((order) => {
+          {results.map((order) => {
             return (
               <div
                 key={order.id}
-                className="flex justify-between"
+                className="flex justify-between "
                 style={{ paddingBottom: "40px" }}
               >
                 <div className="flex gap-4">
@@ -87,6 +81,7 @@ const Cart = () => {
                     <h2>
                       size: <span>{order.size}</span>
                     </h2>
+                    <button className="bg-red text-sm rounded ">Remove</button>
                     {/* <hr /> */}
                   </div>
                 </div>
@@ -112,7 +107,7 @@ const Cart = () => {
           <h1 className="flex justify-center items-center">ORDER SUMMERY</h1>
           <div className="flex justify-between">
             <h3>Subtotal</h3>
-            <span>$ 80</span>
+            <span>$ {sum}</span>
           </div>
           <div className="flex justify-between">
             <h3>Estimated Shipping</h3>
@@ -124,7 +119,7 @@ const Cart = () => {
           </div>
           <div className="flex justify-between">
             <h3 className="text-xl font-bold">Total</h3>
-            <span className="text-xl font-bold">$ 80.0</span>
+            <span className="text-xl font-bold">$ {sum - 5.9}</span>
           </div>
           <button className={classes.cartButton}>Checkout Now</button>
         </div>

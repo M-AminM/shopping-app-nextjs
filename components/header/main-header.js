@@ -40,6 +40,10 @@ const MainHeader = () => {
               <button className="text-white" onClick={logoutHandler}>Logout</button>
             </li>
           )}
+
+          <li>
+            <Link href="/products"><p className="text-white cursor-pointer">Products</p></Link>
+          </li>
           <li>
             <Link href="/cart">
               <FontAwesomeIcon
