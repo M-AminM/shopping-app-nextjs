@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlug, faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { getSession } from "next-auth/react";
 import { useSession } from "next-auth/react";
+import Orders from "./orders";
+import Loading from "../../components/loading/loading";
 
 const Cart = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -30,9 +32,7 @@ const Cart = () => {
 
   if (isLoading || isLoaded) {
     return (
-      <p className="flex justify-center items-center h-screen text-white">
-        is Loading
-      </p>
+      <Loading />
     );
   }
 
@@ -47,82 +47,46 @@ const Cart = () => {
   });
 
   console.log(sum);
+  console.log(results.length === 0);
   return (
     <section className="px-8 py-8 text-white min-h-screen">
       <h1 className="flex justify-center items-center text-3xl">YOUR BAG</h1>
       <div className="flex justify-between md:flex-col">
-        <div className="w-9/12 md:w-full">
-          {results.map((order) => {
-            return (
-              <div
-                key={order.id}
-                className="flex justify-between "
-                style={{ paddingBottom: "40px" }}
-              >
-                <div className="flex gap-4">
-                  <Image
-                    src={order.image}
-                    alt={order.name}
-                    width={220}
-                    height={220}
-                    className="object-cover rounded-full"
-                  />
-                  <div className="py-10 flex flex-col gap-2 ">
-                    <h2>
-                      Product: <span>{order.name}</span>
-                    </h2>
-                    <h2>
-                      ID: <span>{order.id}</span>
-                    </h2>
-                    <div
-                      className={classes.cartCircle}
-                      style={{ background: order.color }}
-                    ></div>
-                    <h2>
-                      size: <span>{order.size}</span>
-                    </h2>
-                    <button className="bg-red text-sm rounded ">Remove</button>
-                    {/* <hr /> */}
-                  </div>
-                </div>
-                <div className="flex flex-col py-10 gap-4">
-                  <div className="flex gap-2">
-                    <FontAwesomeIcon
-                      className="cursor-pointer"
-                      icon={faMinus}
-                    />
-                    <span className="text-xl" style={{ marginTop: "-8px" }}>
-                      {order.number}
-                    </span>
-                    <FontAwesomeIcon className="cursor-pointer" icon={faPlus} />
-                  </div>
-                  <span className="text-xl">$ {order.price}</span>
-                </div>
-              </div>
-            );
-          })}
+        <div
+          className={`${results.length === 0 ? "w-full" : "w-9/12 md:w-full"}`}
+        >
+          {results.length === 0 ? (
+            <p className="flex justify-center items-center pt-10 text-4xl text-red md:text-3xl">
+              Nothing Ordered
+            </p>
+          ) : (
+            <Orders results={results} />
+          )}
         </div>
-
-        <div className={classes.orderBox}>
-          <h1 className="flex justify-center items-center">ORDER SUMMERY</h1>
-          <div className="flex justify-between">
-            <h3>Subtotal</h3>
-            <span>$ {sum}</span>
+        {results.length === 0 ? (
+          ""
+        ) : (
+          <div className={classes.orderBox}>
+            <h1 className="flex justify-center items-center">ORDER SUMMERY</h1>
+            <div className="flex justify-between">
+              <h3>Subtotal</h3>
+              <span>$ {sum}</span>
+            </div>
+            <div className="flex justify-between">
+              <h3>Estimated Shipping</h3>
+              <span>$ 5.9</span>
+            </div>
+            <div className="flex justify-between">
+              <h3>Shopping Discount</h3>
+              <span>- $ 5.9</span>
+            </div>
+            <div className="flex justify-between">
+              <h3 className="text-xl font-bold">Total</h3>
+              <span className="text-xl font-bold">$ {sum - 5.9}</span>
+            </div>
+            <button className={classes.cartButton}>Checkout Now</button>
           </div>
-          <div className="flex justify-between">
-            <h3>Estimated Shipping</h3>
-            <span>$ 5.9</span>
-          </div>
-          <div className="flex justify-between">
-            <h3>Shopping Discount</h3>
-            <span>- $ 5.9</span>
-          </div>
-          <div className="flex justify-between">
-            <h3 className="text-xl font-bold">Total</h3>
-            <span className="text-xl font-bold">$ {sum - 5.9}</span>
-          </div>
-          <button className={classes.cartButton}>Checkout Now</button>
-        </div>
+        )}
       </div>
     </section>
   );

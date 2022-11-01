@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import { useSession } from "next-auth/react";
 import { getSession } from "next-auth/react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Product = ({ productData, session }) => {
   const [order, setOrder] = useState({
@@ -29,6 +31,9 @@ const Product = ({ productData, session }) => {
   };
 
   const submitOrder = async () => {
+    const id = toast.loading("Please wait...", {
+      position: toast.POSITION.TOP_CENTER,
+    });
     const response = await fetch("/api/orders", {
       method: "POST",
       body: JSON.stringify(order),
@@ -36,7 +41,22 @@ const Product = ({ productData, session }) => {
         "Content-Type": "application/json",
       },
     });
-    
+    if (!response.ok) {
+      toast.update(id, {
+        render: "Something went wrong",
+        type: "error",
+        isLoading: false,
+        autoClose: true,
+      });
+      throw new Error(data.message || "Something went wrong !");
+    } else {
+      toast.update(id, {
+        render: "Your Orders Added",
+        type: "success",
+        isLoading: false,
+        autoClose: true,
+      });
+    }
   };
 
   return (
@@ -96,8 +116,9 @@ const Product = ({ productData, session }) => {
           </span>
         </div>
         <button className={classes.cartBtn} onClick={submitOrder}>
-          ADD TO CART{" "}
+          ADD TO CART
         </button>
+        <ToastContainer />
       </div>
     </div>
   );
