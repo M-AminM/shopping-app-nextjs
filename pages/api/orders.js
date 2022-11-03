@@ -65,15 +65,14 @@ const handler = async (req, res) => {
   }
 
   if (req.method === "PATCH") {
-    const data = req.body;
-    const { id } = data;
+    const data = JSON.parse(req.body);
 
     const client = await connectToDatabase();
     const db = client.db();
 
     const documents = await db
       .collection("orders")
-      .deleteOne({ name: "Head phone" });
+      .deleteOne({ name: data.name });
 
     res.status(200).json({ orders: documents });
   }

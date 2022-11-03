@@ -10,7 +10,7 @@ const Cart = ({ data, session }) => {
     sum += value.price;
   });
 
-  console.log(data.orders);
+  // console.log(data.orders);
 
   return (
     <section className="px-8 py-8 text-white min-h-screen">

@@ -2,29 +2,43 @@ import classes from "./cart.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Orders = ({ results }) => {
-  const removeHandler = (e) => {
-    const data = { id: e.target.value };
-    console.log(data);
-    fetch("/api/orders", {
+  const router = useRouter();
+
+  const removeHandler = async (e) => {
+    const id = toast.loading("Please wait...", {
+      position: toast.POSITION.TOP_CENTER,
+    });
+    const results = await fetch("/api/orders", {
       method: "PATCH",
-      body: JSON.stringify({ id: e.target.value }),
-    })
-      .then((response) => {
-        response.json().then((response) => {
-          console.log(response);
-        });
-      })
-      .catch((err) => {
-        console.error(err);
+      body: JSON.stringify({ name: e.target.value }),
+    });
+    const json = await results.json();
+    if (json.orders.acknowledged) {
+      toast.update(id, {
+        render: "Your Order Removed",
+        type: "success",
+        isLoading: false,
+        autoClose: true,
       });
+    } else {
+      toast.update(id, {
+        render: "cannot Removed",
+        type: "error",
+        isLoading: false,
+        autoClose: true,
+      });
+    }
+    router.replace(router.asPath);
   };
 
   return (
     <section>
       {results.map((order) => {
-        // console.log(order._id);
         return (
           <div
             key={order._id}
@@ -56,11 +70,11 @@ const Orders = ({ results }) => {
                 <button
                   className="bg-red text-sm rounded w-24"
                   onClick={removeHandler}
-                  value={order._id}
+                  value={order.name}
                 >
                   Remove
                 </button>
-                {/* <hr /> */}
+                <ToastContainer />
               </div>
             </div>
             <div className="flex flex-col py-10 gap-4">
