@@ -74,9 +74,18 @@ const Product = ({ productData, session }) => {
         <span className="text-4xl">{`$ ${productData.price}.00`}</span>
 
         <div className="flex">
-          <div className="flex gap-px pt-1">
+          <div className="flex gap-4 pt-1">
             <h4>Color</h4>
-            <div
+            <select
+              name="colors"
+              className="text-black outline-0"
+              onClick={(e) => setOrder({ ...order, color: e.target.value })}
+            >
+              <option value="black">black</option>
+              <option value="darkblue">darkblue</option>
+              <option value="gray">gray</option>
+            </select>
+            {/* <div
               className={classes.circleColor}
               style={{ background: "black" }}
             ></div>
@@ -87,13 +96,13 @@ const Product = ({ productData, session }) => {
             <div
               className={classes.circleColor}
               style={{ background: "gray" }}
-            ></div>
+            ></div> */}
           </div>
           <div className="flex pl-10 gap-4">
             <h4>Size</h4>
             <select
               name="parameters"
-              className="text-black"
+              className="text-black outline-0"
               onClick={(e) => setOrder({ ...order, size: e.target.value })}
             >
               <option value="M">M</option>
@@ -139,7 +148,7 @@ export async function getServerSideProps(context) {
   if (!session) {
     return {
       redirect: {
-        destination: "/dashboard/auth/login",
+        destination: "/register",
         permanent: false,
       },
     };

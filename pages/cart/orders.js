@@ -4,12 +4,30 @@ import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 
 const Orders = ({ results }) => {
+  const removeHandler = (e) => {
+    const data = { id: e.target.value };
+    console.log(data);
+    fetch("/api/orders", {
+      method: "PATCH",
+      body: JSON.stringify({ id: e.target.value }),
+    })
+      .then((response) => {
+        response.json().then((response) => {
+          console.log(response);
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   return (
     <section>
       {results.map((order) => {
+        // console.log(order._id);
         return (
           <div
-            key={order.id}
+            key={order._id}
             className="flex justify-between "
             style={{ paddingBottom: "40px" }}
           >
@@ -26,7 +44,7 @@ const Orders = ({ results }) => {
                   Product: <span>{order.name}</span>
                 </h2>
                 <h2>
-                  ID: <span>{order.id}</span>
+                  ID: <span>12</span>
                 </h2>
                 <div
                   className={classes.cartCircle}
@@ -35,7 +53,13 @@ const Orders = ({ results }) => {
                 <h2>
                   size: <span>{order.size}</span>
                 </h2>
-                <button className="bg-red text-sm rounded ">Remove</button>
+                <button
+                  className="bg-red text-sm rounded w-24"
+                  onClick={removeHandler}
+                  value={order._id}
+                >
+                  Remove
+                </button>
                 {/* <hr /> */}
               </div>
             </div>

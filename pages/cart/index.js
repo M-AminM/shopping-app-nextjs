@@ -1,53 +1,17 @@
-import Image from "next/image";
-import { useEffect, useState } from "react";
 import classes from "./cart.module.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlug, faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { getSession } from "next-auth/react";
-import { useSession } from "next-auth/react";
 import Orders from "./orders";
-import Loading from "../../components/loading/loading";
+import { server } from "../../config";
 
-const Cart = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [orders, setOrders] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(true);
-  const { data: session, status } = useSession();
-
-  useEffect(() => {
-    getSession().then((session) => {
-      if (!session) {
-        window.location.href = "/register";
-      } else {
-        setIsLoading(false);
-      }
-    });
-    fetch("/api/orders")
-      .then((response) => response.json())
-      .then((data) => {
-        setIsLoaded(false);
-        setOrders(data.orders);
-      });
-  }, []);
-
-  if (isLoading || isLoaded) {
-    return (
-      <Loading />
-    );
-  }
-
-  const userEmail = session.user.email;
-
-  const results = orders.filter((order) => order.email === userEmail);
-
+const Cart = ({ data, session }) => {
+  const results = data.orders.filter((order) => order.email === session.user.email);
   let sum = 0;
-
   results.forEach((value) => {
     sum += value.price;
   });
 
-  console.log(sum);
-  console.log(results.length === 0);
+  console.log(data.orders);
+
   return (
     <section className="px-8 py-8 text-white min-h-screen">
       <h1 className="flex justify-center items-center text-3xl">YOUR BAG</h1>
@@ -91,5 +55,17 @@ const Cart = () => {
     </section>
   );
 };
+
+export async function getServerSideProps(context) {
+  const res = await fetch(`${server}/api/orders`);
+  const data = await res.json();
+
+  return {
+    props: {
+      data: data,
+      session: await getSession(context)
+    },
+  };
+}
 
 export default Cart;
