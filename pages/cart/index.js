@@ -4,10 +4,12 @@ import Orders from "./orders";
 import { server } from "../../config";
 
 const Cart = ({ data, session }) => {
-  const results = data.orders.filter((order) => order.email === session.user.email);
+  const results = data.orders.filter(
+    (order) => order.email === session.user.email
+  );
   let sum = 0;
   results.forEach((value) => {
-    sum += value.price;
+    sum += value.price * value.number;
   });
 
   // console.log(data.orders);
@@ -60,10 +62,21 @@ export async function getServerSideProps(context) {
   const res = await fetch(`${server}/api/orders`);
   const data = await res.json();
 
+  const session = await getSession(context);
+
+  if(!session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      }
+    }
+  }
+
   return {
     props: {
       data: data,
-      session: await getSession(context)
+      session: session,
     },
   };
 }

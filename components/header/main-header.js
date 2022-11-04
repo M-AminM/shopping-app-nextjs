@@ -23,6 +23,13 @@ const MainHeader = () => {
         </div>
 
         <ul className={classes.rightSide}>
+          {session.data && (
+            <li>
+              <button className="text-red" onClick={logoutHandler}>
+                Logout
+              </button>
+            </li>
+          )}
           <li>
             <Link href="/">
               <p className="text-white cursor-pointer">Home</p>
@@ -35,24 +42,23 @@ const MainHeader = () => {
               </Link>
             </li>
           )}
-          {session.data && (
-            <li>
-              <button className="text-white" onClick={logoutHandler}>Logout</button>
-            </li>
-          )}
 
           <li>
-            <Link href="/products"><p className="text-white cursor-pointer">Products</p></Link>
-          </li>
-          <li>
-            <Link href="/cart">
-              <FontAwesomeIcon
-                className="cursor-pointer"
-                color="white"
-                icon={faShoppingBasket}
-              />
+            <Link href="/products">
+              <p className="text-white cursor-pointer">Products</p>
             </Link>
           </li>
+          {session.data && (
+            <li>
+              <Link href="/cart">
+                <FontAwesomeIcon
+                  className="cursor-pointer"
+                  color="white"
+                  icon={faShoppingBasket}
+                />
+              </Link>
+            </li>
+          )}
         </ul>
       </nav>
     </header>

@@ -12,8 +12,13 @@ import {
   faMapMarker,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 const Footer = () => {
+  const session = useSession();
+
+  console.log(session);
+
   return (
     <div className=" bg-header px-8 py-8 flex justify-between text-white md:flex-col md:gap-10">
       <div className="flex flex-col gap-6">
@@ -54,20 +59,19 @@ const Footer = () => {
               <Link href="/">Home</Link>
             </li>
             <li>
-              <Link href="/">Man Fashion</Link>
+              <Link href="/products">Products</Link>
             </li>
             <li>
-              <Link href="/">Accessories</Link>
+              <Link href="/cart">Cart</Link>
             </li>
           </ul>
-          <ul  className="flex flex-col gap-3">
-            <li>
-              <Link href="/">Older Tracking</Link>
-            </li>
-            <li>
-              <Link href="/">Wishlist</Link>
-            </li>
-          </ul>
+          {!session.data && (
+            <ul className="flex flex-col gap-3">
+              <li>
+                <Link href="/register">Register</Link>
+              </li>
+            </ul>
+          )}
         </div>
       </div>
 
@@ -75,7 +79,11 @@ const Footer = () => {
         <h1 className="text-2xl">Contact</h1>
         <ul className="flex flex-col gap-4">
           <li className="flex gap-2">
-            <FontAwesomeIcon className="pt-1" color="#FF4A59" icon={faMapMarker} />
+            <FontAwesomeIcon
+              className="pt-1"
+              color="#FF4A59"
+              icon={faMapMarker}
+            />
             <p>622 Dixie, South Tobinchester 98336</p>
           </li>
           <li className="flex gap-2">
@@ -83,7 +91,11 @@ const Footer = () => {
             <p>+ 1 234 56 78</p>
           </li>
           <li className="flex gap-2">
-            <FontAwesomeIcon className="pt-1" color="#FF4A59" icon={faEnvelope} />
+            <FontAwesomeIcon
+              className="pt-1"
+              color="#FF4A59"
+              icon={faEnvelope}
+            />
             <p>aminfarid1234@gmail.com</p>
           </li>
         </ul>

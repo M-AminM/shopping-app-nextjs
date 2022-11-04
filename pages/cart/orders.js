@@ -79,11 +79,9 @@ const Orders = ({ results }) => {
             </div>
             <div className="flex flex-col py-10 gap-4">
               <div className="flex gap-2">
-                <FontAwesomeIcon className="cursor-pointer" icon={faMinus} />
-                <span className="text-xl" style={{ marginTop: "-8px" }}>
-                  {order.number}
+                <span className="text-xl text-red pt-2 font-bold" style={{ marginTop: "-8px" }}>
+                  num: {order.number}
                 </span>
-                <FontAwesomeIcon className="cursor-pointer" icon={faPlus} />
               </div>
               <span className="text-xl">$ {order.price}</span>
             </div>

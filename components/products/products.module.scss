@@ -19,4 +19,147 @@
 .productImage {
     object-fit: cover;
     border-radius: 50%;
+    filter: grayscale(30%);
+}
+
+.productImage:hover {
+  filter: grayscale(0%);
+}
+
+.container {
+    display: flex;
+    // width: 100%;
+    // flex-wrap: wrap;
+    padding: 4% 1%;
+    box-sizing: border-box;
+    // height: 100vh;
+    
+  }
+  
+  .box {
+    flex: 1;
+    overflow: hidden;
+    transition: .5s;
+    margin: 0 2%;
+    box-shadow: 0 20px 30px rgba(0,0,0,.1);
+    line-height: 0;
+    height: 400px;
+    background: #2b3849;
+    border-radius: 16px;
+    cursor: pointer;
+
+  }
+  
+  .box > img {
+    width: 250px;
+    // height: 200px;
+    height: calc(100% - 10vh);
+    object-fit: cover; 
+    transition: .5s;
+  }
+  
+  .box > span {
+    font-size: 3.8vh;
+    display: block;
+    text-align: center;
+    height: 10vh;
+    line-height: 2.6;
+    color: #FF4A59;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+  }
+  
+  .box:hover { flex: 1 1 50%; }
+  .box:hover > img {
+    width: 300px;
+    height: 100%;
+  }
+   
+
+  $font-size: 14px;
+  $frame-color: #fff;
+  $size: 2.5em;
+  $open-width: 18em;
+  $open-padding: 0.3em 2.1em 0.3em 0.4em;
+  $frame-thickness: 0.2em;
+  $handle-height: 1.8em;
+  $open-trans-time: 800ms;
+  $close-trans-time: 150ms;
+
+@import url("https://fonts.googleapis.com/css?family=Raleway:400,400i,700");
+
+
+.searchBox {
+	font-size: $font-size;
+	border: solid $frame-thickness $frame-color;
+	display: inline-block;
+	position: relative;
+	border-radius: $size;
+	input[type="text"] {
+		font-family: inherit;
+    color: #fff;
+    background: transparent;
+		font-weight: bold;
+		width: $size;
+		height: $size;
+		padding: $open-padding;
+		border: none;
+		box-sizing: border-box;
+		border-radius: $size;
+		transition:
+			width $open-trans-time cubic-bezier(0.68, -0.55, 0.27, 1.55) $close-trans-time;
+		&:focus {
+			outline: none;
+		}
+		&:focus, &:not(:placeholder-shown) {
+			width: $open-width;
+			transition: width $open-trans-time cubic-bezier(0.68, -0.55, 0.27, 1.55);
+			+ button[type="reset"] {
+				transform: rotate(-45deg) translateY(0);
+				transition:
+					transform $close-trans-time ease-out $open-trans-time;
+			}
+			+ button[type="reset"]:after {
+				opacity: 1;
+				transition:
+					top $close-trans-time ease-out ($open-trans-time + $close-trans-time),
+					right $close-trans-time ease-out ($open-trans-time + $close-trans-time),
+					opacity $close-trans-time ease ($open-trans-time + $close-trans-time);
+			}
+		}
+	}
+	button[type="reset"] {
+		background-color: transparent;
+		width: $handle-height;
+		height: $handle-height;
+		border: 0;
+		padding: 0;
+		outline: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: absolute;
+		top: ($size / 2) - ($handle-height / 2);
+		right: ($size / 2) - ($handle-height / 2);
+		transform: rotate(-45deg) translateY($size - $frame-thickness);
+		transition:
+			transform $close-trans-time ease-out $close-trans-time;
+		&:before, &:after {
+			content: "";
+			background-color: $frame-color;
+			width: $frame-thickness;
+			height: $handle-height;
+			position: absolute;
+		}
+		&:after {
+			transform: rotate(90deg);
+			opacity: 0;
+			transition:
+				transform $close-trans-time ease-out,
+				opacity $close-trans-time ease-out;
+		}
+	}
 }

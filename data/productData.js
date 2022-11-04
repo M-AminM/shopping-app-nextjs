@@ -9,7 +9,7 @@ const productData = [
   },
   {
     id: 2,
-    image: "/media/product2.png",
+    image: "/media/shirt.png",
     alt: "shirt",
     info: "Lorem ipsum dolor sit amet. Aut corporis sequi sed deleniti dicta a voluptatem dolorem est eveniet doloremque vel molestias sunt quo iure numquam in esse velit. Et voluptas labore rem tempora dolores aut fugit excepturi est minus accusantium aut nulla quia non atque molestiae qui porro quidem!",
     price: 40.0,
@@ -25,18 +25,18 @@ const productData = [
   },
   {
     id: 4,
-    image: "/media/product4.png",
-    alt: "hat",
+    image: "/media/shoes.png",
+    alt: "Shoes",
     info: "Lorem ipsum dolor sit amet. Aut corporis sequi sed deleniti dicta a voluptatem dolorem est eveniet doloremque vel molestias sunt quo iure numquam in esse velit. Et voluptas labore rem tempora dolores aut fugit excepturi est minus accusantium aut nulla quia non atque molestiae qui porro quidem!",
     price: 10.0,
     color: ["white", "black", "red"],
   },
   {
     id: 5,
-    image: "/media/1.jpg",
-    alt: "Bag",
+    image: "/media/213.jpg",
+    alt: "watch",
     info: "Lorem ipsum dolor sit amet. Aut corporis sequi sed deleniti dicta a voluptatem dolorem est eveniet doloremque vel molestias sunt quo iure numquam in esse velit. Et voluptas labore rem tempora dolores aut fugit excepturi est minus accusantium aut nulla quia non atque molestiae qui porro quidem!",
-    price: 30.0,
+    price: 130.0,
     color: ["white", "black", "red"],
   },
   {

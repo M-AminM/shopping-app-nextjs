@@ -3,6 +3,7 @@ import classes from "./slider.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import dataSlider from "../../data/data";
+import Link from "next/link";
 
 export default function Slider() {
   const [slideIndex, setSlideIndex] = useState(1);
@@ -46,14 +47,16 @@ export default function Slider() {
 
                 <div className={classes.arrowBtn}>
                   <p onClick={nextSlide} className="text-white cursor-pointer">
-                    <FontAwesomeIcon color="#FF4A57" icon={faArrowLeft} />
+                    <FontAwesomeIcon className="text-2xl" color="#FF4A57" icon={faArrowLeft} />
                   </p>
                   <p onClick={prevSlide} className="text-white cursor-pointer">
-                    <FontAwesomeIcon color="#FF4A57" icon={faArrowRight} />
+                    <FontAwesomeIcon className="text-2xl" color="#FF4A57" icon={faArrowRight} />
                   </p>
                 </div>
                 <button className={classes.buttonShop} role="button">
-                  Shop now
+                  <Link href="/products">
+                    Shop now
+                  </Link>
                 </button>
               </div>
               <img
