@@ -61,7 +61,7 @@ const Product = ({ productData, session }) => {
 
   return (
     <div className="text-white flex justify-center items-center w-full md:flex-col px-32 gap-12 md:gap-2 md:px-12 py-12">
-      <img
+      <Image
         src={productData.image}
         alt={productData.alt}
         width={400}

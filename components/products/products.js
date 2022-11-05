@@ -47,7 +47,7 @@ const Products = () => {
               <Link key={product.id} href={`/products/${product.alt}`}>
                 <div className={classes.container}>
                   <div className={classes.box}>
-                    <img src={product.image} />
+                    <img src={product.image} alt={product.alt}/>
                     <span>{product.alt}</span>
                   </div>
                   {/* <div className={classes.box}>

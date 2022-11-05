@@ -46,6 +46,7 @@ function AuthForm() {
   const usernameInputRef = useRef();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
+  const router = useRouter();
 
   useEffect(() => {
     getSession().then((session) => {
@@ -65,7 +66,7 @@ function AuthForm() {
     );
   }
 
-  const router = useRouter();
+
 
   function switchAuthModeHandler() {
     setIsLogin((prevState) => !prevState);
