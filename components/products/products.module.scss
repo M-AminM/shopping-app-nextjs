@@ -26,6 +26,20 @@
   filter: grayscale(0%);
 }
 
+.productButton {
+  border: solid 2px #FF4A59;
+  padding: 2px 20px;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 14px;
+}
+
+.productButton:hover {
+  background: #FF4A59;
+  transition: .5s;
+}
+
 .container {
     display: flex;
     // width: 100%;

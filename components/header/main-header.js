@@ -15,11 +15,13 @@ const MainHeader = () => {
   return (
     <header className={classes.header}>
       <nav className={classes.nav}>
-        <div className={classes.leftSide}>
-          <input className={classes.searchInput} />
+      {/* classes.leftSide */}
+        <div className="font-bold text-white text-xl md:text-base">
+          AMIN COLLECTION
+          {/* <input className={classes.searchInput} />
           <button className={classes.searchBtn}>
             <FontAwesomeIcon icon={faSearch} />
-          </button>
+          </button> */}
         </div>
 
         <ul className={classes.rightSide}>

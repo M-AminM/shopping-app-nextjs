@@ -84,7 +84,7 @@ const Footer = () => {
               color="#FF4A59"
               icon={faMapMarker}
             />
-            <p>622 Dixie, South Tobinchester 98336</p>
+            <p>Iran, Tehran</p>
           </li>
           <li className="flex gap-2">
             <FontAwesomeIcon className="pt-1" color="#FF4A59" icon={faPhone} />
