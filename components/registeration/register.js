@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Link from "next/link";
 
 const createUser = async (username, email, password) => {
   const id = toast.loading("Please wait...", {
@@ -65,8 +66,6 @@ function AuthForm() {
       </p>
     );
   }
-
-
 
   function switchAuthModeHandler() {
     setIsLogin((prevState) => !prevState);
@@ -175,6 +174,12 @@ function AuthForm() {
               <span>Password</span>
               <i></i>
             </div>
+
+            {isLogin && (
+              <Link href="/changePass">
+                <p className="text-sm text-midBlue pt-2 cursor-pointer">Change password</p>
+              </Link>
+            )}
 
             <div className="flex justify-center items-center flex-col">
               <input

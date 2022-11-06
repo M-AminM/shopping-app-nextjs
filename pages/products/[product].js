@@ -58,7 +58,6 @@ const Product = ({ productData, session }) => {
       });
     }
   };
-
   return (
     <div className="text-white flex justify-center items-center w-full md:flex-col px-32 gap-12 md:gap-2 md:px-12 py-12">
       <Image
@@ -81,22 +80,15 @@ const Product = ({ productData, session }) => {
               className="text-black outline-0"
               onClick={(e) => setOrder({ ...order, color: e.target.value })}
             >
-              <option value="black">black</option>
-              <option value="darkblue">darkblue</option>
-              <option value="gray">gray</option>
+              {productData.color.map((color, index) => {
+                console.log(color);
+                return (
+                  <option key={index} value={color}>
+                    {color}
+                  </option>
+                );
+              })}
             </select>
-            {/* <div
-              className={classes.circleColor}
-              style={{ background: "black" }}
-            ></div>
-            <div
-              className={classes.circleColor}
-              style={{ background: "darkblue" }}
-            ></div>
-            <div
-              className={classes.circleColor}
-              style={{ background: "gray" }}
-            ></div> */}
           </div>
           <div className="flex pl-10 gap-4">
             <h4>Size</h4>
