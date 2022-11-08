@@ -1,4 +1,4 @@
-import classes from "./cart.module.scss";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
@@ -61,7 +61,7 @@ const Orders = ({ results }) => {
                   ID: <span>12</span>
                 </h2>
                 <div
-                  className={classes.cartCircle}
+                  className="w-5 h-5 rounded-full"
                   style={{ background: order.color }}
                 ></div>
                 <h2>

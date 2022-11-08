@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import productData from "../../data/productData";
 import Image from "next/image";
-import classes from "./product.module.scss";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import { useSession } from "next-auth/react";
@@ -109,14 +109,14 @@ const Product = ({ productData, session }) => {
           <span className="cursor-pointer" onClick={decreaseNumber}>
             <FontAwesomeIcon icon={faMinus} />
           </span>
-          <div className={classes.counter}>
+          <div className="border border-white w-7 rounded-2xl">
             <p className="flex justify-center items-center">{order.number}</p>
           </div>
           <span className="cursor-pointer" onClick={increaseNumber}>
             <FontAwesomeIcon icon={faPlus} />
           </span>
         </div>
-        <button className={classes.cartBtn} onClick={submitOrder}>
+        <button className="border-none outline-0 bg-orange p-2.5 text-black rounded-xl flex justify-center items-center w-40 font-semibold" onClick={submitOrder}>
           ADD TO CART
         </button>
         <ToastContainer />

@@ -1,4 +1,3 @@
-import classes from "./footer.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faInstagram,
@@ -25,25 +24,25 @@ const Footer = () => {
         <h1 className="text-2xl">Our social Media</h1>
         <div className="flex gap-4">
           <div
-            className={classes.socialMedia}
+            className="rounded-full w-10 h-10 flex justify-center items-center cursor-pointer"
             style={{ background: "#3B5999" }}
           >
             <FontAwesomeIcon className="text-xl" icon={faFacebook} />
           </div>
           <div
-            className={classes.socialMedia}
+            className="rounded-full w-10 h-10 flex justify-center items-center cursor-pointer"
             style={{ background: "#E4405F" }}
           >
             <FontAwesomeIcon icon={faInstagram} />
           </div>
           <div
-            className={classes.socialMedia}
+            className="rounded-full w-10 h-10 flex justify-center items-center cursor-pointer"
             style={{ background: "#55ACEE" }}
           >
             <FontAwesomeIcon icon={faTwitter} />
           </div>
           <div
-            className={classes.socialMedia}
+            className="rounded-full w-10 h-10 flex justify-center items-center cursor-pointer"
             style={{ background: "#E60023" }}
           >
             <FontAwesomeIcon icon={faPinterest} />

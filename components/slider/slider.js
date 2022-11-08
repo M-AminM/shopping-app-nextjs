@@ -24,10 +24,6 @@ export default function Slider() {
     }
   };
 
-  const moveDot = (index) => {
-    setSlideIndex(index);
-  };
-
   return (
     <div style={{height: "90vh"}}>
       {dataSlider.map((data) => {

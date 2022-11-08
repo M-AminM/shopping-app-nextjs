@@ -1,4 +1,3 @@
-import classes from "./newsletter.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
@@ -8,8 +7,8 @@ const Newsletter = () => {
             <h1 className="text-5xl font-bold text-white md:text-4xl">Newsletter</h1>
             <h2 className="text-2xl text-white md:text-base">Get timely updates from your favorites products.</h2>
             <div className="flex w-2/5 md:w-full">
-                <input className={classes.inputNews} type="email" placeholder="Your email"/>
-                <button className={classes.buttonNews}>
+                <input className="border-none outline-0 w-full p-1" type="email" placeholder="Your email"/>
+                <button className="w-12 h-full bg-red">
                     <FontAwesomeIcon color="white" icon={faPaperPlane} />
                 </button>
             </div>

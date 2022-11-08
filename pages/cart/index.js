@@ -1,4 +1,4 @@
-import classes from "./cart.module.scss";
+
 import { getSession } from "next-auth/react";
 import Orders from "./orders";
 import { server } from "../../config";
@@ -32,7 +32,7 @@ const Cart = ({ data, session }) => {
         {results.length === 0 ? (
           ""
         ) : (
-          <div className={classes.orderBox}>
+          <div className="border border-white p-2.5 w-1/5 flex flex-col gap-3.5 rounded-xl h-full md:w-full">
             <h1 className="flex justify-center items-center">ORDER SUMMERY</h1>
             <div className="flex justify-between">
               <h3>Subtotal</h3>
@@ -50,7 +50,7 @@ const Cart = ({ data, session }) => {
               <h3 className="text-xl font-bold">Total</h3>
               <span className="text-xl font-bold">$ {sum - 5.9}</span>
             </div>
-            <button className={classes.cartButton}>Checkout Now</button>
+            <button className="bg-orange text-black rounded-xl flex justify-center items-center p-2 font-semibold">Checkout Now</button>
           </div>
         )}
       </div>

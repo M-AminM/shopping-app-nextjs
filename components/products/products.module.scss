@@ -42,12 +42,8 @@
 
 .container {
     display: flex;
-    // width: 100%;
-    // flex-wrap: wrap;
     padding: 4% 1%;
     box-sizing: border-box;
-    // height: 100vh;
-    
   }
   
   .box {
@@ -66,7 +62,6 @@
   
   .box > img {
     width: 250px;
-    // height: 200px;
     height: calc(100% - 10vh);
     object-fit: cover; 
     transition: .5s;
