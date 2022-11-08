@@ -8,6 +8,9 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
+
 const createUser = async (username, email, password) => {
   const id = toast.loading("Please wait...", {
     position: toast.POSITION.TOP_CENTER,
@@ -44,6 +47,8 @@ const createUser = async (username, email, password) => {
 function AuthForm() {
   const [login, setLogin] = useState(true);
   const [isLogin, setIsLogin] = useState(true);
+  const [showPass, setShowPass] = useState(true);
+  const [message, setMessage] = useState("");
   const usernameInputRef = useRef();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
@@ -164,20 +169,32 @@ function AuthForm() {
 
             <div className={classes.inputBox}>
               <label htmlFor="password"></label>
+              {message.trim().length !== 0 && (
+                <div
+                  className={classes.eyeInput}
+                  onClick={() => setShowPass(!showPass)}
+                >
+                  <FontAwesomeIcon icon={faEye} />
+                </div>
+              )}
               <input
-                type="password"
+                type={showPass ? "password" : "text"}
                 id="password"
                 required
                 ref={passwordInputRef}
                 autoComplete="off"
+                onChange={(e) => setMessage(e.target.value)}
               />
               <span>Password</span>
+
               <i></i>
             </div>
 
             {isLogin && (
               <Link href="/changePass">
-                <p className="text-sm text-midBlue pt-2 cursor-pointer">Change password</p>
+                <p className="text-sm text-midBlue pt-2 cursor-pointer">
+                  Change password
+                </p>
               </Link>
             )}
 

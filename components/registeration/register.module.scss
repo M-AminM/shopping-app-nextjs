@@ -149,6 +149,14 @@
     padding-top: 16px;
 }
 
+.eyeInput {
+    position: absolute;
+    top: 21px;
+    z-index: 20;
+    right: 8px;
+    cursor: pointer;
+}
+
 @media screen and (max-width: 440px) {
     .box {
         width: 300px;
