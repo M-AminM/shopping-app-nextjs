@@ -5,10 +5,9 @@ import { SessionProvider } from "next-auth/react";
 import { useState, useEffect } from "react";
 import Loading from "../components/loading/loading";
 import { useRouter } from "next/router";
+import NextNProgress from "nextjs-progressbar";
 
 function MyApp({ Component, pageProps }) {
-  const router = useRouter();
-
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -17,19 +16,17 @@ function MyApp({ Component, pageProps }) {
       setLoading(false);
     }, 1000);
   }, []);
-  
+
   return (
     <>
-      {loading ? (
-        <Loading />
-      ) : (
-        <SessionProvider session={pageProps.session}>
-          <Header>
-            <Component {...pageProps} />
-            <Footer />
-          </Header>
-        </SessionProvider>
-      )}
+      <NextNProgress />
+
+      <SessionProvider session={pageProps.session}>
+        <Header>
+          <Component {...pageProps} />
+          <Footer />
+        </Header>
+      </SessionProvider>
     </>
   );
 }
