@@ -16,8 +16,6 @@ import { useSession } from "next-auth/react";
 const Footer = () => {
   const session = useSession();
 
-  console.log(session);
-
   return (
     <div className=" bg-header px-8 py-8 flex justify-between text-white md:flex-col md:gap-10">
       <div className="flex flex-col gap-6">

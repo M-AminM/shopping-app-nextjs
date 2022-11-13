@@ -1,0 +1,18 @@
+.bgLogout {
+  height: 100vh; 
+}
+
+.logout {
+    position: absolute;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    background: #131921;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

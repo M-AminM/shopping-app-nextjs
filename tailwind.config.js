@@ -13,7 +13,8 @@ module.exports = {
       black: "#23242a",
       mainBlack: "#1c1c1c",
       midBlue: "#45F3FF",
-      red: "#FF4A59"
+      red: "#FF4A59",
+      lightBlack: "#28292d"
     },
     screens: {
       'tablet': '640px',

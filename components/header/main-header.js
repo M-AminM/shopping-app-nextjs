@@ -4,18 +4,43 @@ import { faSearch, faShoppingBasket } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react";
+import { useState, useEffect } from "react";
+import Logout from "./logout";
+import { useRouter } from "next/router";
 
 const MainHeader = () => {
+  const [logout, setLogout] = useState(false);
   const session = useSession();
+  const router = useRouter();
 
   const logoutHandler = () => {
     signOut();
   };
 
+  console.log(logout);
+  useEffect(() => {
+    const overflowhide = document.querySelector("body");
+    const asda = () => {
+      if (logout === false) {
+        overflowhide.style.overflow = "";
+      } else {
+        overflowhide.style.overflow = "hidden";
+      }
+    };
+
+    asda();
+  }, [logout]);
+
+  useEffect(() => {
+    if (logout) {
+      setLogout(false);
+    }
+  }, [router.asPath]);
+
   return (
     <header className={classes.header}>
       <nav className={classes.nav}>
-      {/* classes.leftSide */}
+        {/* classes.leftSide */}
         <div className="font-bold text-white text-xl md:text-base">
           AMIN COLLECTION
           {/* <input className={classes.searchInput} />
@@ -27,7 +52,7 @@ const MainHeader = () => {
         <ul className={classes.rightSide}>
           {session.data && (
             <li>
-              <button className="text-red" onClick={logoutHandler}>
+              <button className="text-red" onClick={() => setLogout(!logout)}>
                 Logout
               </button>
             </li>
@@ -63,6 +88,13 @@ const MainHeader = () => {
           )}
         </ul>
       </nav>
+      {logout && (
+        <Logout
+          logout={logout}
+          setLogout={setLogout}
+          logoutHandler={logoutHandler}
+        />
+      )}
     </header>
   );
 };

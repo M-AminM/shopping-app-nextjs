@@ -54,11 +54,13 @@ function AuthForm() {
   const [isLogin, setIsLogin] = useState(true);
   const [showPass, setShowPass] = useState(true);
   const [message, setMessage] = useState("");
+  const [inputData, setInputData] = useState({});
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
+    watch,
   } = useForm();
 
   const router = useRouter();
@@ -72,6 +74,10 @@ function AuthForm() {
       }
     });
   }, []);
+  useEffect(() => {
+    const subscription = watch((value, { name, type }) => setInputData(value));
+    return () => subscription.unsubscribe();
+  }, [watch]);
 
   if (login) {
     return (
@@ -129,147 +135,146 @@ function AuthForm() {
     }
   };
 
-  console.log(errors);
+  // const a = () => {
+  //   if (inputData.email || inputData.username || inputData.password) {
+  //     console.log("NO");
+  //   }else {
+  //     console.log("YES");
+  //   }
+  // };
+
+  // a();
 
   return (
     <div
       className="flex justify-center items-center"
       style={{ minHeight: "90vh" }}
     >
-      <div className={classes.bgBox}>
-        <div
-          className={classes.box}
-          // style={{ minHeight: isLogin ? "480px" : "580px" }}
-        >
-          <div className={classes.form}>
-            <h2>{isLogin ? "Login" : "Sign Up"}</h2>
+      <div className={classes.box}>
+        <div className={classes.form}>
+          <h2>{isLogin ? "Login" : "Sign Up"}</h2>
 
-            <form onSubmit={handleSubmit(submitHandler)}>
-              {!isLogin && (
-                <div>
-                  <div className={classes.inputBox}>
-                    <label htmlFor="username"></label>
-                    <input
-                      type="text"
-                      id="username"
-                      required
-                      autoComplete="off"
-                      {...register("username", {
-                        minLength: {
-                          value: 4,
-                          message:
-                            "Username has to be greater than 4 characters long",
-                        },
-
-                        required: "Required",
-                      })}
-                    />
-                    <span>Username</span>
-                    <i></i>
-                  </div>
-                  {errors.username && (
-                    <p className="text-xs text-red pt-2">
-                      {errors.username.message}
-                    </p>
-                  )}
-                </div>
-              )}
-
+          <form onSubmit={handleSubmit(submitHandler)}>
+            {!isLogin && (
               <div>
                 <div className={classes.inputBox}>
-                  <label htmlFor="email"></label>
+                  <label htmlFor="username"></label>
                   <input
                     type="text"
-                    id="email"
+                    id="username"
                     required
                     autoComplete="off"
-                    {...register("email", {
-                      pattern: {
-                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                        message: "Invalid email address",
-                      },
-                      required: "Required",
-                    })}
-                  />
-                  <span>Email</span>
-                  <i></i>
-                </div>
-                {errors.email && (
-                  <p className="text-xs text-red pt-2">
-                    {errors.email.message}
-                  </p>
-                )}
-              </div>
-              <div>
-                <div className={classes.inputBox}>
-                  <label htmlFor="password"></label>
-                  {message.trim().length !== 0 && (
-                    <div
-                      className={classes.eyeInput}
-                      onClick={() => setShowPass(!showPass)}
-                    >
-                      <FontAwesomeIcon icon={faEye} />
-                    </div>
-                  )}
-                  <input
-                    type={showPass ? "password" : "text"}
-                    id="password"
-                    required
-                    autoComplete="off"
-                    onChange={(e) => setMessage(e.target.value)}
-                    {...register("password", {
+                    {...register("username", {
                       minLength: {
-                        value: 7,
+                        value: 4,
                         message:
-                          "Password has to be greater than 4 characters long",
+                          "Username has to be greater than 4 characters long",
                       },
-                      maxLength: {
-                        value: 14,
-                        message:
-                          "Username has to be lower than 14 characters long",
-                      },
+
                       required: "Required",
                     })}
                   />
-                  <span>Password</span>
-
+                  <span>Username</span>
                   <i></i>
                 </div>
-                {errors.password && (
+                {errors.username && (
                   <p className="text-xs text-red pt-2">
-                    {errors.password.message}
+                    {errors.username.message}
                   </p>
                 )}
               </div>
+            )}
 
-              {isLogin && (
-                <Link href="/changePass">
-                  <p className="text-sm text-midBlue pt-2 cursor-pointer">
-                    Change password
-                  </p>
-                </Link>
-              )}
-
-              <div className="flex justify-center items-center flex-col">
+            <div>
+              <div className={classes.inputBox}>
+                <label htmlFor="email"></label>
                 <input
-                  className={classes.submitButton}
-                  style={{ marginTop: "30px" }}
-                  type="submit"
-                  value={isLogin ? "Login" : "Create Account"}
+                  type="text"
+                  id="email"
+                  required
+                  autoComplete="off"
+                  {...register("email", {
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: "Invalid email address",
+                    },
+                    required: "Required",
+                  })}
                 />
-                <ToastContainer />
-                <button
-                  type="button"
-                  className={classes.toggle}
-                  onClick={switchAuthModeHandler}
-                >
-                  {isLogin
-                    ? "Create new account"
-                    : "Login with existing account"}
-                </button>
+                <span>Email</span>
+                <i></i>
               </div>
-            </form>
-          </div>
+              {errors.email && (
+                <p className="text-xs text-red pt-2">{errors.email.message}</p>
+              )}
+            </div>
+            <div>
+              <div className={classes.inputBox}>
+                <label htmlFor="password"></label>
+                {message.trim().length !== 0 && (
+                  <div
+                    className={classes.eyeInput}
+                    onClick={() => setShowPass(!showPass)}
+                  >
+                    <FontAwesomeIcon icon={faEye} />
+                  </div>
+                )}
+                <input
+                  type={showPass ? "password" : "text"}
+                  id="password"
+                  required
+                  autoComplete="off"
+                  onChange={(e) => setMessage(e.target.value)}
+                  {...register("password", {
+                    minLength: {
+                      value: 7,
+                      message:
+                        "Password has to be greater than 4 characters long",
+                    },
+                    maxLength: {
+                      value: 14,
+                      message:
+                        "Username has to be lower than 14 characters long",
+                    },
+                    required: "Required",
+                  })}
+                />
+                <span>Password</span>
+
+                <i></i>
+              </div>
+              {errors.password && (
+                <p className="text-xs text-red pt-2">
+                  {errors.password.message}
+                </p>
+              )}
+            </div>
+
+            {isLogin && (
+              <Link href="/changePass">
+                <p className="text-sm text-midBlue pt-2 cursor-pointer">
+                  Change password
+                </p>
+              </Link>
+            )}
+
+            <div className="flex justify-center items-center flex-col">
+              <input
+                className={classes.submitButton}
+                style={{ marginTop: "30px" }}
+                type="submit"
+                value={isLogin ? "Login" : "Create Account"}
+              />
+              <ToastContainer />
+              <button
+                type="button"
+                className={classes.toggle}
+                onClick={switchAuthModeHandler}
+              >
+                {isLogin ? "Create new account" : "Login with existing account"}
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
